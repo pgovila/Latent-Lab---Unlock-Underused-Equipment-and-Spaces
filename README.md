@@ -64,18 +64,6 @@ npm install
 npm run dev
 ```
 
-### 3-Minute Judge Evaluation Flow
-1. **Persona Switcher:** Use the top-bar dropdown to switch between:
-   - **Pankhuri Govila (You):** Researcher / User (100 credits, training badges: Laser Cutter, BSL-2, GPU Slurm).
-   - **Dr. Aris Thorne (PI):** Biotech Lab Owner.
-   - **Elena Rostova (Lab Mgr):** Makerspace Manager.
-   - **Office of Research Integrity:** Administrator.
-2. **Tab 1 — Discovery & Match:** View real-time qualification checking (**"Verified Eligible"** vs **"Missing Badge"**). Select a resource and click **"Run Conflict Resolution AI"** to see dynamic schedule de-confliction.
-3. **Tab 2 — My Bookings & Check-In:** Complete **Milestone 7 (Digital Check-In)** with a 1-5★ rating, notes, and PPE acknowledgment to unlock hardware. Then complete **Milestone 8 (Digital Return)** to observe late-penalty calculation and resource re-locking.
-4. **Tab 3 — Owner Portal & Listing:** List a new resource with custom badge requirements (**Milestone 1**) or approve/reject pending booking requests (**Milestone 5**).
-5. **Tab 4 — Dispute & Incident Hub:** Enter damage descriptions and run the **Incident Summarizer AI** for NLP severity classification (Low/Med/High) and triage recommendations (**Milestone 9**).
-6. **Tab 5 — Auditable Ledger Timeline:** Inspect the immutable event stream recording timestamps, actors, and JSON metadata payloads (**Milestone 10**).
-
 ---
 
 ## 3. The 10-Milestone End-to-End Lifecycle Workflow
