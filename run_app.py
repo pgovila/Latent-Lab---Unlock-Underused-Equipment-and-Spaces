@@ -60,9 +60,9 @@ def test_ai_api():
         with urllib.request.urlopen(req, timeout=5) as res:
             res_data = json.loads(res.read().decode())
             assert res_data.get("success") is True
-            print("  ✓ Conflict Resolution AI endpoint responded successfully.")
+            print("  [PASS] Conflict Resolution AI endpoint responded successfully.")
     except Exception as e:
-        print(f"  ✗ Conflict Resolution AI test failed: {e}")
+        print(f"  [FAIL] Conflict Resolution AI test failed: {e}")
 
     # 2. Test Incident Summarizer AI payload
     payload_incident = {
@@ -78,9 +78,9 @@ def test_ai_api():
             res_data = json.loads(res.read().decode())
             assert res_data.get("success") is True
             severity = res_data["data"]["severity"]
-            print(f"  ✓ Incident Summarizer AI responded with severity: [{severity.upper()}].")
+            print(f"  [PASS] Incident Summarizer AI responded with severity: [{severity.upper()}].")
     except Exception as e:
-        print(f"  ✗ Incident Summarizer AI test failed: {e}")
+        print(f"  [FAIL] Incident Summarizer AI test failed: {e}")
 
 def main():
     check_python_version()
@@ -113,8 +113,8 @@ def main():
         time.sleep(1)
         if is_server_alive():
             print("\n" + "="*60)
-            print("  ✓ LatentLab is LIVE at http://localhost:3000")
-            print("  ✓ Press Ctrl+C in this terminal anytime to stop the server.")
+            print("  * LatentLab is LIVE at http://localhost:3000")
+            print("  * Press Ctrl+C in this terminal anytime to stop the server.")
             print("="*60 + "\n")
             webbrowser.open("http://localhost:3000")
             break
