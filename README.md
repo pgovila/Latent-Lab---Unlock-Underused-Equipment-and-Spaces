@@ -29,11 +29,35 @@ The full interactive prototype is pre-built, tested, and running live locally at
 👉 **`http://localhost:3000`**
 
 ### Running Locally from Source
+
+#### Option A: Quick Launch with Python 3.12 Runner (Recommended)
+If you have multiple Python versions installed (e.g., Python 3.12 and 3.14), you can use the Windows Python launcher `py -3.12` to guarantee execution under Python 3.12:
+
+```powershell
+# 1. Create a dedicated Python 3.12 virtual environment (.venv)
+py -3.12 -m venv .venv
+
+# 2. Activate the virtual environment
+# In PowerShell:
+.\.venv\Scripts\Activate.ps1
+# (Or in CMD: .\.venv\Scripts\activate.bat)
+
+# 3. Launch the application (starts Next.js, performs health checks & auto-opens browser)
+python run_app.py
+
+# Optional: Run automated API & health verification tests
+python run_app.py --test
+```
+
+> **Do we need a Virtual Environment (`.venv`)?**  
+> **Yes, strongly recommended.** When both Python 3.12 and experimental Python 3.14 are installed on the same machine, the system defaults to 3.14. Creating and activating `.venv` with `py -3.12 -m venv .venv` isolates your environment so that typing `python` always targets Python 3.12, preventing package incompatibility.
+
+#### Option B: Direct Node.js / npm Execution
 ```bash
-# Navigate to the application directory
+# Navigate to the web application directory
 cd analytical-eye-lab
 
-# Install dependencies
+# Install dependencies (if not already installed)
 npm install
 
 # Start development server
