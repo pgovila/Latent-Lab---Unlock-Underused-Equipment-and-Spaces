@@ -23,10 +23,13 @@ Colleges, research institutions, and community makerspaces own millions of dolla
 
 ---
 
-## 2. Quick Start & Evaluation Guide
+## 2. Quick Start & Live Application
 
-The full interactive prototype is pre-built, tested, and running live locally at:  
-👉 **`http://localhost:3000`**
+🚀 **Live Production Application on Vercel:**  
+👉 **[https://latent-lab-unlock-underused-equipme.vercel.app/](https://latent-lab-unlock-underused-equipme.vercel.app/)**
+
+💻 **Local Development URL:**  
+👉 `http://localhost:3000`
 
 ### Running Locally from Source
 
@@ -94,17 +97,22 @@ To avoid tragedy-of-the-commons resource exhaustion, LatentLab implements a thre
 
 ---
 
-## 5. Lightweight AI Integrations (Vercel AI SDK)
+## 5. AI Modules & Cross-Institutional Federated RAG Pipeline
 
-1. **Conflict Resolution AI (`analyzeBookingConflict`)**
-   - Detects micro-overlaps across scheduled reservation vectors.
-   - Calculates duration and synthesizes intelligent alternative windows:
-     - **Earliest Available:** 30 minutes after current reservation concludes with automated maintenance/cooling buffer.
-     - **Next-Day Slot:** Identical preferred time block on the next available calendar date.
-2. **Incident Summarizer AI (`summarizeIncidentReport`)**
-   - Natural language processing parses operator descriptions of damage, smoke, or errors.
-   - Classifies incidents into **Low / Medium / High Severity**.
-   - Generates actionable maintenance triage directives (e.g., immediate lockout, technician dispatch, estimated downtime hours).
+### A. Conflict Resolution AI (`analyzeBookingConflict`)
+- Detects micro-overlaps across scheduled reservation vectors in real-time.
+- Synthesizes intelligent alternative windows: Earliest Available (with 30-min buffer) and Next-Day identical slot.
+
+### B. Incident Summarizer AI (`summarizeIncidentReport`)
+- NLP parsing of damage descriptions into **Low / Medium / High Severity**.
+- Generates actionable maintenance triage directives and estimated downtime hours.
+
+### C. Federated Multi-University RAG Pipeline (`queryFederatedRAG`)
+To bridge disparate institutions (e.g., Stanford Bio-X, MIT.nano, UC Berkeley Marvell Nanofab, National AI Supercomputing Alliance), LatentLab incorporates a **Retrieval-Augmented Generation (RAG)** architecture:
+- **The Cross-Institutional Challenge:** Every university maintains disparate, unstructured operating manuals, visitor policies, and hazardous material SOPs. Traditional keyword search cannot evaluate research objectives or reconcile safety certifications.
+- **Semantic Vector Retrieval:** Converts natural language research goals (e.g., *"300kV cryo-TEM vitrification for biological samples"* or *"Class 100 direct-write laser lithography"*) into semantic embeddings, retrieving top matching apparatus across partner campuses with relevance scores.
+- **Reciprocal Credential Equivalence Engine:** Cross-references the researcher's home university safety badges against the destination university's retrieved SOP clauses, automatically validating reciprocal access (e.g., matching home BSL-2 or Slurm cluster certs to target campus protocols).
+- **Inter-University Research Passport:** Synthesizes an approved cross-campus reservation with 1:1 federated credit billing.
 
 ---
 
@@ -116,6 +124,9 @@ graph TD
     B -->|Check Credentials & Quotas| C[Anti-Monopolization Layer]
     B -->|Detect Schedule Overlaps| D[Conflict Resolution AI]
     B -->|Classify Damage Severity| E[Incident Summarizer AI]
+    B -->|Natural Language Research Goals| RAG[Federated Academic RAG Engine]
+    RAG -->|Semantic Vector Retrieval| KB[(Multi-University SOP & Manual Knowledge Base)]
+    RAG -->|Reciprocal Verification| CERT[Credential Equivalence Engine]
     B -->|RLS-Protected Persistence| F[(Supabase PostgreSQL)]
     F --> G[profiles Table]
     F --> H[resources Table]

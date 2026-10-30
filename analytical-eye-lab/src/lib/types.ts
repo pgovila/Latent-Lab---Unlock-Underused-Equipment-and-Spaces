@@ -88,3 +88,54 @@ export interface ActivityLedgerItem {
   timestamp: string;
   metadata: Record<string, any>;
 }
+
+// -------------------------------------------------------------
+// CROSS-INSTITUTIONAL FEDERATED RAG TYPES
+// -------------------------------------------------------------
+export interface FederatedUniversity {
+  id: string;
+  name: string;
+  campus_code: string;
+  location: string;
+  consortium_tier: 'Core' | 'Partner' | 'Affiliate';
+  reciprocal_agreement: boolean;
+  contact_email: string;
+  badge_equivalencies: Record<string, string>; // Maps external badge name to local badge
+}
+
+export interface InstitutionalKnowledgeDoc {
+  id: string;
+  university_id: string;
+  university_name: string;
+  title: string;
+  category: string;
+  doc_type: 'Equipment Manual' | 'Safety SOP' | 'Visitor Policy' | 'Specs';
+  raw_text: string;
+  required_safety_level: string;
+  equipment_id?: string;
+  cost_per_hour: number;
+}
+
+export interface RAGMatchItem {
+  resource_id: string;
+  title: string;
+  university: string;
+  location: string;
+  category: string;
+  credit_cost: number;
+  relevance_score: number; // 0.0 - 1.0
+  matching_snippet: string;
+  safety_protocol_summary: string;
+  prerequisites: string[];
+  credential_status: 'Equivalence Verified' | 'Additional Training Required';
+  reciprocal_badge_matched?: string;
+}
+
+export interface RAGQueryResult {
+  query: string;
+  matches: RAGMatchItem[];
+  synthesized_guidance: string;
+  institutional_passport_status: 'Approved for Cross-Campus Access' | 'Review Required';
+  total_consortium_nodes_searched: number;
+}
+

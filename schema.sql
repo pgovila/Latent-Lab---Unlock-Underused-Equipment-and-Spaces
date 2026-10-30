@@ -148,6 +148,47 @@ CREATE POLICY "Insert activity ledger" ON activity_ledger FOR INSERT
 WITH CHECK (true);
 
 -- =========================================================================
--- INITIAL SEED DATA (For Immediate Hackathon Evaluation)
+-- CROSS-INSTITUTIONAL FEDERATED RAG SCHEMA (pgvector Supported)
 -- =========================================================================
--- Note: Replace dummy UUIDs with real Supabase Auth IDs or evaluate in mock/hybrid mode
+
+-- Enable pgvector extension for high-performance semantic search
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- 6. FEDERATED_UNIVERSITIES TABLE
+CREATE TABLE IF NOT EXISTS federated_universities (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name TEXT NOT NULL,
+    campus_code TEXT UNIQUE NOT NULL,
+    location TEXT NOT NULL,
+    consortium_tier TEXT NOT NULL CHECK (consortium_tier IN ('Core', 'Partner', 'Affiliate')),
+    reciprocal_agreement BOOLEAN NOT NULL DEFAULT true,
+    contact_email TEXT NOT NULL,
+    badge_equivalencies JSONB NOT NULL DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- 7. INSTITUTIONAL_SOP_VECTORS (Knowledge Chunks for Semantic RAG)
+CREATE TABLE IF NOT EXISTS institutional_sop_vectors (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    university_id UUID NOT NULL REFERENCES federated_universities(id) ON DELETE CASCADE,
+    equipment_title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    doc_type TEXT NOT NULL CHECK (doc_type IN ('Equipment Manual', 'Safety SOP', 'Visitor Policy', 'Specs')),
+    raw_text TEXT NOT NULL,
+    required_safety_level TEXT NOT NULL,
+    cost_per_hour INTEGER NOT NULL DEFAULT 25,
+    embedding vector(1536), -- OpenAI / Vercel AI SDK text-embedding-3-small dimension
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- HNSW Vector Index for sub-millisecond approximate nearest neighbor retrieval
+CREATE INDEX IF NOT EXISTS idx_sop_vectors_embedding ON institutional_sop_vectors 
+USING hnsw (embedding vector_cosine_ops);
+
+-- RLS for Federated Knowledge Base
+ALTER TABLE federated_universities ENABLE ROW LEVEL SECURITY;
+ALTER TABLE institutional_sop_vectors ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Public read federated universities" ON federated_universities FOR SELECT USING (true);
+CREATE POLICY "Public read institutional SOPs" ON institutional_sop_vectors FOR SELECT USING (true);
+

@@ -7,14 +7,14 @@ This walkthrough allows any judge to complete the entire 10-step lifecycle journ
 ---
 
 ### Prerequisites & Quick Start
-1. The app is live and running locally at `http://localhost:3000`.
-2. To start or restart the development server manually:
+- 🚀 **Live Production URL:** **[https://latent-lab-unlock-underused-equipme.vercel.app/](https://latent-lab-unlock-underused-equipme.vercel.app/)**
+- 💻 **Local Development URL:** `http://localhost:3000`
+- To run locally from source:
    ```bash
    cd analytical-eye-lab
    npm install
    npm run dev
    ```
-3. Open `http://localhost:3000` in your web browser.
 
 ---
 
@@ -69,3 +69,10 @@ This walkthrough allows any judge to complete the entire 10-step lifecycle journ
 - Click **"5. Auditable Ledger Timeline"** tab.
 - Review the complete chronological institutional ledger recording every event (`BOOKING_REQUESTED`, `ELIGIBILITY_PASSED`, `OWNER_APPROVED`, `DIGITAL_CHECK_IN_COMPLETED`, `DIGITAL_CHECK_OUT_COMPLETED`, `INCIDENT_REPORTED`).
 - Inspect the timestamp, actor, and JSON metadata payloads verifying data integrity.
+
+#### 9. Cross-Campus Federated RAG Consortium
+- Click **"6. Cross-Campus RAG"** tab.
+- Click any quick test prompt (e.g. *"Cryo-TEM 300kV for macromolecular vitrification"* or *"NVIDIA GH200 Grace Hopper Slurm partition"*).
+- Watch the RAG pipeline parse unstructured institutional SOPs from Stanford, MIT, Berkeley, and the National AI Consortium.
+- Observe the **Reciprocal Safety Verification** check (matching home badges against target campus SOPs).
+- Click **"Issue Cross-Campus Passport & Reserve"** to witness an inter-university booking and ledger log!

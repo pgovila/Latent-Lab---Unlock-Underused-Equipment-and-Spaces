@@ -181,8 +181,8 @@ def build_pdf(filename="LatentLab_Project_Documentation.pdf"):
             Paragraph("<b>Format:</b> 48-Hour Continuous Build Hackathon", meta_style)
         ],
         [
-            Paragraph("<b>GitHub Repo:</b> github.com/pgovila/Latent-Lab---Unlock-Underused-Equipment-and-Spaces", meta_style),
-            Paragraph("<b>Deployment:</b> Vercel (Next.js 16 + Supabase RLS)", meta_style)
+            Paragraph("<b>Live App URL:</b> https://latent-lab-unlock-underused-equipme.vercel.app/", meta_style),
+            Paragraph("<b>GitHub Repo:</b> github.com/pgovila/Latent-Lab---Unlock-Underused-Equipment-and-Spaces", meta_style)
         ]
     ]
     t_meta = Table(meta_info, colWidths=[250, 254])
@@ -249,6 +249,7 @@ def build_pdf(filename="LatentLab_Project_Documentation.pdf"):
     story.append(Paragraph("• <b>Real-Time Persona Switcher:</b> Instant switching between Pankhuri Govila (Researcher), Dr. Aris Thorne (Lab Owner), Elena Rostova (Makerspace Mgr), and Campus Admin to evaluate both sides of the lifecycle effortlessly.", bullet_style))
     story.append(Paragraph("• <b>Conflict Resolution AI:</b> Detects scheduling overlaps and synthesizes optimal alternative slots (Earliest Available with buffer, or Next-Day identical slot).", bullet_style))
     story.append(Paragraph("• <b>Incident Summarizer AI:</b> Natural language severity triage (Low/Med/High) and repair recommendations.", bullet_style))
+    story.append(Paragraph("• <b>Cross-Campus Federated RAG Pipeline:</b> Multi-university semantic vector retrieval connecting Stanford Bio-X, MIT.nano, UC Berkeley Marvell, and the National AI Consortium with reciprocal safety credential reconciliation.", bullet_style))
     story.append(Paragraph("• <b>Anti-Monopolization Safeguards:</b> Strict 3 active bookings cap per researcher and deterministic waitlist positioning.", bullet_style))
     story.append(Paragraph("• <b>Production PostgreSQL Schema:</b> Complete RLS policies, tables, indexes, and constraints in `schema.sql`.", bullet_style))
     story.append(Paragraph("• <b>Hybrid Persistence Engine:</b> Resilient in-memory seed synchronization enabling judges to evaluate the app immediately without requiring third-party cloud database configurations.", bullet_style))
@@ -261,7 +262,7 @@ def build_pdf(filename="LatentLab_Project_Documentation.pdf"):
     story.append(Paragraph("• <b>Frontend & App Router:</b> Next.js 16 (React 19, Turbopack, TypeScript) utilizing a monolithic component architecture to prevent assembly errors.", bullet_style))
     story.append(Paragraph("• <b>Styling & Aesthetics:</b> Tailwind CSS, Lucide React, and glassmorphism design tokens providing a modern, institutional dark mode aesthetic.", bullet_style))
     story.append(Paragraph("• <b>Database & Security:</b> Supabase PostgreSQL with granular Row Level Security (RLS) policies protecting `profiles`, `resources`, `bookings`, `condition_logs`, and `activity_ledger`.", bullet_style))
-    story.append(Paragraph("• <b>AI Layer:</b> Vercel AI SDK integration (`/api/ai` route) with heuristic client fallback for uninterrupted offline evaluation.", bullet_style))
+    story.append(Paragraph("• <b>AI & Federated RAG Engine:</b> Vercel AI SDK integration (`/api/ai` route) and multi-campus semantic vector retrieval (`queryFederatedRAG`) over disparate university operating manuals and safety SOPs.", bullet_style))
     story.append(Paragraph("• <b>Local Environment & Testing:</b> Isolated Python 3.12 virtual environment (`.venv`) with automated runner and verification suite (`run_app.py`).", bullet_style))
 
     # SECTION 5
@@ -272,6 +273,7 @@ def build_pdf(filename="LatentLab_Project_Documentation.pdf"):
     story.append(Paragraph("• <b>Journey C (Digital Custody Check-In & Check-Out):</b> Switched to approved booking, submitted 5★ rating with baseline notes and PPE certification, verified resource unlock state. Completed check-out, confirmed automated overdue penalty calculation formula, and verified resource availability restoration.", bullet_style))
     story.append(Paragraph("• <b>Journey D (Dispute & Incident Triage):</b> Submitted equipment damage description, verified AI categorization as [HIGH SEVERITY], and confirmed automatic escalation to the admin ledger.", bullet_style))
     story.append(Paragraph("• <b>Journey E (Automated Test Suite):</b> Executed `python run_app.py --test` in Python 3.12 virtual environment, confirming HTTP 200 health check and valid JSON responses from both AI endpoints.", bullet_style))
+    story.append(Paragraph("• <b>Journey F (Cross-Campus Federated RAG):</b> Executed natural language research queries (Cryo-TEM, direct-write lithography, deep silicon etching), verified semantic relevance scoring, checked reciprocal credential verification, and completed cross-campus passport reservation.", bullet_style))
 
     # SECTION 6
     story.append(Paragraph("6. Future Scope & Possible Improvements", h1_style))
@@ -288,6 +290,7 @@ def build_pdf(filename="LatentLab_Project_Documentation.pdf"):
         [Paragraph("<b>Team Composition</b>", table_cell_style), Paragraph("Solo Participant (1 Member)", table_cell_style)],
         [Paragraph("<b>Full Name</b>", table_cell_style), Paragraph("Pankhuri Govila", table_cell_style)],
         [Paragraph("<b>Email</b>", table_cell_style), Paragraph("pankhgovila@gmail.com", table_cell_style)],
+        [Paragraph("<b>Live App URL</b>", table_cell_style), Paragraph("https://latent-lab-unlock-underused-equipme.vercel.app/", table_cell_style)],
         [Paragraph("<b>Institution / Track</b>", table_cell_style), Paragraph("We Code Coders · 48-Hour Open Innovation Hackathon", table_cell_style)],
         [Paragraph("<b>Problem Statement</b>", table_cell_style), Paragraph("Unlock Underused Equipment and Spaces", table_cell_style)],
         [Paragraph("<b>Repository URL</b>", table_cell_style), Paragraph("https://github.com/pgovila/Latent-Lab---Unlock-Underused-Equipment-and-Spaces", table_cell_style)]
