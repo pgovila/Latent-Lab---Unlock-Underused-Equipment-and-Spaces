@@ -22,3 +22,7 @@ dist/
 # Operating System Files
 .DS_Store
 Thumbs.db
+
+# Documentation & Binary Artifacts (Do not push PDF to repo)
+*.pdf
+*.PDF
