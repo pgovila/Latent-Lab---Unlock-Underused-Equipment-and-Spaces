@@ -82,6 +82,27 @@ def test_ai_api():
     except Exception as e:
         print(f"  [FAIL] Incident Summarizer AI test failed: {e}")
 
+    # 3. Test Federated RAG Pipeline
+    payload_rag = {
+        "action": "query_federated_rag",
+        "payload": {
+            "query": "cryo electron microscope vitrification",
+            "userBadges": ["BSL-2 Biosafety"],
+            "selectedCampus": "All"
+        }
+    }
+    try:
+        data = json.dumps(payload_rag).encode('utf-8')
+        req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
+        with urllib.request.urlopen(req, timeout=5) as res:
+            res_data = json.loads(res.read().decode())
+            assert res_data.get("success") is True
+            matches = len(res_data["data"]["matches"])
+            passport = res_data["data"]["institutional_passport_status"]
+            print(f"  [PASS] Federated RAG Pipeline retrieved {matches} campus apparatus ({passport}).")
+    except Exception as e:
+        print(f"  [FAIL] Federated RAG Pipeline test failed: {e}")
+
 def main():
     check_python_version()
 
